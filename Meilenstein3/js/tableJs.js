@@ -1,5 +1,5 @@
 /*
-@Tablo muzu degiştiren olay
+@die Tabelle wird geladen
 */
 function tabSwitch(tetik) {
 
