@@ -1,0 +1,31 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=8" />
+<title>Book</title>
+
+<link href="css/main.css"  rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/tableJs.js"></script>
+<script type="text/javascript" src="json/roman.json"> </script>
+<script type="text/javascript" src="json/horror.json"> </script>
+</head>
+<body>
+<div class="h5">
+	<div class="h4">Meine Bücher</div>
+<div class="cerceve" >
+	<div class="button" id="horror" onclick="tabSwitch(1);" ><h2>HORROR</h2></div>
+	<div class="button" id="roman" onclick="tabSwitch(2);" ><h2>ROMAN</h2></div>
+</div>
+
+
+	
+<div id="horrorLoad">
+<script type="text/javascript">loadData(horrorData);</script>
+</div>
+<div id="romanLoad">
+<script type="text/javascript">loadData(romanData);</script>
+</div>
+		
+</div>
+</body>
+</html>

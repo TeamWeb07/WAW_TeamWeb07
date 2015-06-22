@@ -1,0 +1,250 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=8" />
+<title>Book Entry</title>
+
+<link href="type.css"  rel="stylesheet" type="text/css" />
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.js"></script>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery.cycle.all.min.js"></script>
+
+<script type="text/javascript"></script>
+
+<style>
+
+.h1 {
+margin-left:5% ;
+}
+
+.h2 {
+margin-left:10%;
+padding-left:2%;
+border-color:black;
+}
+
+.h3 {
+margin-left:10%;
+padding-left:20%;
+border-color:black; 
+}
+
+.h4 {
+font-size:22px; 
+color:blue; 
+font-weight:bold; 
+margin-top:3%; 
+margin-left:21.1%;
+font-family: Arial Black;
+}
+
+.h5 {
+float:left; 
+width:100%; 
+height:100%; 
+background-color:#87CEEB; 
+font-family:arial;
+}
+
+.h6 {
+margin-left: -70%;
+
+}
+
+.h7 {
+margin-left: 9.5%;
+}
+
+.h8 {
+color: blue;
+margin-top:6%;
+border-color:#87CEEB;
+margin-left:7%;
+font-size:16px;  
+font-weight:bold; 
+}
+
+.h9 {
+color: black;
+margin-left:0%;
+font-size:14px; 
+}
+
+.h10 {
+color: blue;
+background-color:#1A95D7;
+border-color:blue; 
+border-style:solid;
+padding-left:7%;
+padding-right:7%;
+margin-left:43%%;
+margin-right:43%;
+margin-top:3%;
+font-size:14px;  
+}
+
+
+select {
+width: 137.5px;
+}
+
+</style>
+
+<script>
+	//Überprüft die Eingaben des Users auf korrektheit und gibt dementsprechend einen boolean Wert zurück. 
+	function formularüberprüfung() {
+    var überprüfung = true;
+    
+    //Ladet alle Input Felder
+    var eingabe = document.getElementsByTagName("input");
+    //Durchläuft alle Input Felder
+    for (var i = 0; i < eingabe.length; i++) {
+        var lokalüberprüfung = true;
+        //Ignoriert Input Felder welche für die folgenden Überprüfungen nicht bernötigt werden,
+		//da sie leer sind.
+        if (eingabe[i] == "undefined" ) {
+            lokalüberprüfung = false;
+        } else {
+            //Prüfe in Abhängigkeit der ID, mit Regex ob Eingabe stimmt
+            switch (eingabe[i].id) {
+                case 'vorname':
+                    if (!eingabe[i].value.match('[A-Z|a-z]+')) {
+                        lokalüberprüfung = false;
+                    }
+                    break;
+                case 'name':
+                    if (!eingabe[i].value.match('[A-Z|a-z]+')) {
+                        lokalüberprüfung = false;
+                    }
+                    break;
+					
+				case 'buchautor':
+                    if (!eingabe[i].value.match('[A-Z|a-z]+')) {
+                        lokalüberprüfung = false;
+                    }
+                    break;
+                case 'buchtitel':
+                    if (!eingabe[i].value.match('.+')) {
+                        lokalüberprüfung = false;
+                    }
+                    break;
+					
+				 case 'isbn':
+                    if (!eingabe[i].value.match('^[0-9]{1,13}$')) {
+                        lokalüberprüfung = false;
+                    }
+                    break;
+                
+                case 'jahr':
+                   
+                    if (!(eingabe[i].value.match('[0-9]{3,4}'))) {
+                        lokalüberprüfung = false;
+                    } else {
+                        if(eingabe[i].value > 2015) {
+                            lokalüberprüfung = false;
+                        }
+                    }
+                    break;
+               
+                case 'auflage':
+                    if (!eingabe[i].value.match('[0-9][0-9]|[0-9]')) {
+                        lokalüberprüfung = false;
+                    }
+                    break;
+            }
+            if (!lokalüberprüfung) {
+                //Falls Eingabe nicht stimmt ändere CSS Klasse
+                eingabe[i].className = "FormularfelderFehler";
+				
+              
+                if (überprüfung) {
+                    //Fokussiere das falsche Element. Hierbei wird immer das erste falsche Element fokussiert
+                    eingabe[i].focus();
+                    überprüfung = lokalüberprüfung;
+					alert("Einige Eingaben sind fehlerhaft. Bitte überprüfen Sie ihre Eingaben");
+                }
+            } else {
+                //Setze ansonsten die alte CSS Klasse
+                eingabe[i].className = "linkeFormularfelder";
+				eingabe[i].className = "rechteFormularfelder";
+			
+            }
+        }
+    }
+ 
+    return überprüfung;
+}
+	</script>
+</head>
+
+<body>
+<div class="h5">
+	<div class="h4">Buch anlegen</div>
+		<form method="get" action="http://martinakraus.net/createBookEntry.php">
+			<table border="0" cellspacing="3" cellpadding="7" class="h8">
+  				<tr>
+   					<td>Buchtitel</td>
+   					<th width="150"><input class="h2" type="text" name="titel" value=""></th> 
+					<th width="160"></th>
+    				<td width="150">Dein Vorname</div></td>
+    				<th width="120"><input class="h2" type="text" name="vorname" value=""></th> 
+ 				</tr>
+  		 		<tr>
+    				<td>Buchautor</td>
+    				<th><input class="h2" type="text" name="autor" value=""></th> 
+    				<th width="160"> </th>
+    				<td width="150">Dein Nachname</div></td>
+    				<th width="120"><input class="h2" type="text" name="name" value=""></th>
+  				</tr><p>
+   				<tr>
+    				<td>ISBN</td>
+    				<th><input class="h2" type="number" name="isbn" value=""></th> 
+    				<th width="160"> </th>
+    				<td width="150">Dein Favorit</div></td>
+    				<th width="120"><input class="h6" type="checkbox" name="filmfavorit" value="">
+  				</tr>
+  				<tr>
+   					<td>Kapitel</td>
+    				<th><input class="h2" type="number" name="kapitel" value=""></th> 
+  				</tr>
+  				<tr>
+   					<td>Erscheinungsjahr</td>
+    				<th><input class="h2" type="number" name="jahr" value=""></th>    
+  				</tr>
+ 				<tr>
+   					<td>Auflage</td>
+    				<th><input class="h2" type="number" name="auflage" value=""></th>
+  				</tr>
+   				<tr>
+    				<td>Art des Buches</td>
+    				<th><select class="h3" type="dropdownmenü" name="art" size="1">
+        					<option>Hardcover</option>
+    						<option>Newspaper</option>
+        					<option>Taschenbuch</option>
+        					<option>Lexikon</option>
+        					<option>eBook</option>
+        				</select>
+    				</th>
+  				</tr>
+				<tr>
+   					<td>Genre</td>
+    				<td class="h9"><input class="h7" type="checkbox" name="genre" value="" checked> &nbspHorror</td>
+    				<td class="h9"><input class="h9" type="checkbox" name="genre" value=""> &nbspDoku</td>
+				</tr>
+				<tr>
+    				<td></td>
+    				<td class="h9"><input class="h7" type="checkbox" name="genre" value=""> &nbspPsycho</td>
+    				<td class="h9"><input class="h9" type="checkbox" name="genre" value=""> &nbspKomödie</td>
+   				</tr>
+				<tr>
+    				<td></td>
+					<td class="h9"><input class="h7" type="checkbox" name="genre" value=""> &nbspKrimi</td>
+   					<td class="h9"><input class="h9" type="checkbox" name="genre" value=""> &nbspRomanze</td>
+   				</tr>
+			</table>
+		</form>
+	<input class="h10" type="submit" value="Absenden">
+</div>
+</body>
+</html>
